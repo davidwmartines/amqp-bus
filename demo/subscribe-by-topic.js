@@ -1,9 +1,14 @@
 'use strict';
 const Bus = require('../lib/bus');
 
-const bus = new Bus();
+const bus = new Bus({
+  host: '192.168.56.1',
+  vhost: 'bus-demo',
+  username: 'david',
+  password: 'david'
+});
 
-const listenerOptions = {
+const subscribeOptions = {
   exchangeName: 'user-messages',
   routingKey: 'messages.user.1234'
 };
@@ -12,7 +17,7 @@ bus.on('started', function () {
   console.log('*** Bus started ***');
   startListener()
     .tap(()=> {
-      console.log(`You may now publish a message containing a JSON payload to the ${listenerOptions.exchangeName} exchange, with routing key of ${listenerOptions.routingKey}.`);
+      console.log(`You may now publish a message containing a JSON payload to the ${subscribeOptions.exchangeName} exchange, with routing key of ${subscribeOptions.routingKey}.`);
     })
     .catch((err) => {
       console.error(err);
@@ -38,15 +43,15 @@ bus.on('info', (msg) => {
 bus.start();
 
 function startListener() {
-  
-  let listener;
-  return bus.registerTopicListener(listenerOptions, (message) => {
+  let subscription;
+  return bus.subscribe(subscribeOptions, (message) => {
     console.log('received message', message);
-    bus.removeTopicListener(listener)
+    //for demo, we will now unsubscribe and stop the bus.
+    bus.unsubscribe(subscription)
       .finally(() => {
         bus.stop();
       });
   }).then((result) => {
-    listener = result;
+    subscription = result;
   });
 }
