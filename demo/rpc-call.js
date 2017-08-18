@@ -9,14 +9,16 @@ const bus = new Bus({
 });
 
 const options = {
-  messageType: 'bus.demo.query'
+  messageType: 'bus.demo.query',
+  rpcTimeout: 60000
 };
 
 bus.on('started', function () {
   console.log('*** Bus started ***');
   console.log('Sending a request.');
   console.log(`If you have an exchange or queue bound to the "${options.messageType}" exchange, you can inspect it there.`);
-  console.log('You can then send a reply to the exchange indicated in the "replyTo" property of the message.');
+  console.log('You can then send a reply to the exchange indicated in the "replyTo" property of the message, including a matching correlation_id property".');
+  console.log(`You have ${options.rpcTimeout / 1000} seconds to reply!`);
   sendMessage()
     .catch((err) => {
       console.error(err);
@@ -30,9 +32,9 @@ bus.on('stopped', function (status) {
   console.log('XXX Bus stopped XXX', status);
 });
 
-bus.on('debug', function (msg) {
-  console.log('bus [DEBUG] ' + msg);
-});
+// bus.on('debug', function (msg) {
+//   console.log('bus [DEBUG] ' + msg);
+// });
 
 bus.on('error', function (err) {
   console.log('bus [ERROR] ' + err);
