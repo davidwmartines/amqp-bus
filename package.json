@@ -1,0 +1,23 @@
+{
+  "name": "amqp-bus",
+  "version": "1.0.0",
+  "description": "Bus-like facade over AMQP for simple messaging patterns.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d5172/amqp-bus.git"
+  },
+  "author": "David Martines",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d5172/amqp-bus/issues"
+  },
+  "homepage": "https://github.com/d5172/amqp-bus#readme",
+  "dependencies": {
+    "amqp": "^0.2.6",
+    "bluebird": "^3.5.0"
+  }
+}
