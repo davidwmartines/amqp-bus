@@ -9,7 +9,8 @@ const bus = new Bus({
 });
 
 const subscribeOptions = {
-  messageType: 'something.happened'
+  messageType: 'something.happened',
+  roundRobinConsumer: false
 };
 
 bus.on('started', function () {
