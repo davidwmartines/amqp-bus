@@ -9,15 +9,14 @@ const bus = new Bus({
 });
 
 const subscribeOptions = {
-  exchangeName: 'user-messages',
-  routingKey: 'messages.user.1234'
+  messageType: 'something.happened'
 };
 
 bus.on('started', function () {
   console.log('*** Bus started ***');
   startSubscriber()
-    .tap(()=> {
-      console.log(`You may now publish a message containing a JSON payload to the "${subscribeOptions.exchangeName}" exchange, with routing key of "${subscribeOptions.routingKey}".`);
+    .tap(() => {
+      console.log(`You may now publish a message containing a JSON payload to the "${subscribeOptions.messageType}" exchange.`);
     })
     .catch((err) => {
       console.error(err);
