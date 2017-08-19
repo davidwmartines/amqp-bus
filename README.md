@@ -8,7 +8,7 @@ const Bus = require('amqp-bus');
 
 // Create a bus instance. 
 // By default connection will be to guest:guest@localhost.
-// See docs for options (host, vhost, credentiasls, etc.)
+// See docs for options (host, vhost, credentials, etc.)
 const bus = new Bus();
 
 // start the bus.  The creates the connection, among other things.
@@ -18,6 +18,7 @@ bus.start();
 bus.on('started', ()=> {
 
   // Depending on the role of the application, you can do various things with the bus.
+  
   
   /****************************************
     As a subscriber:
@@ -46,6 +47,7 @@ bus.on('started', ()=> {
   };
   
   bus.publish(publishOptions, userCreatedEvent);
+  
   
   /****************************************
      As a topic publisher:
@@ -89,6 +91,35 @@ bus.on('started', ()=> {
   bus.unsubscribe(subscription);
   
   // Note: the unsubscribe can also be used with the messageType subscriptions, but may not be useful.
+  
+  
+  /****************************************
+     As an RPC callee:
+     Bind a handler function to a message type.
+  */
+  const handleRequest = (message) => {
+    return {
+      id: 42,
+      name: 'john'
+    };
+    //or return a promise...
+  };
+  
+  bus.bind('user.query.by-id', handler);
+  
+  
+  /****************************************
+     As an RPC caller:
+     Call with a message type and receive the reply in a promise
+  */
+  
+  const message = {
+    id: 42
+  };
+  bus.call('user.query.by-id', message)
+    .then((response) => {
+       // do something with the response
+    });
   
   
 });
