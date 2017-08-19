@@ -32,9 +32,9 @@ bus.on('stopped', function (status) {
   console.log('XXX Bus stopped XXX', status);
 });
 
-// bus.on('debug', function (msg) {
-//   console.log('bus [DEBUG] ' + msg);
-// });
+bus.on('debug', function (msg) {
+  console.log('bus [DEBUG] ' + msg);
+});
 
 bus.on('error', function (err) {
   console.log('bus [ERROR] ' + err);
@@ -49,12 +49,12 @@ bus.start();
 function sendMessage() {
 
   const message = {
-    name: 'test'
+    query: 'ping'
   };
-
-  return bus.callRpc(message, options)
+  console.log('sending', message);
+  return bus.call(message, options)
     .then((reply) => {
-      console.log('got reply', reply);
+      console.log('received', reply);
     })
     .catch((err) => {
       console.error(err);
