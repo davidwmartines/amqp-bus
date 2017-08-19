@@ -112,7 +112,6 @@ bus.on('started', ()=> {
      As an RPC caller:
      Call with a message type and receive the reply in a promise
   */
-  
   const message = {
     id: 42
   };
@@ -120,9 +119,12 @@ bus.on('started', ()=> {
     .then((response) => {
        // do something with the response
     });
-  
-  
+    
 });
 
+
+// later, to clean up and disconnect:
+bus.stop();
+  
 
 ```
