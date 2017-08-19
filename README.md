@@ -11,10 +11,10 @@ const Bus = require('amqp-bus');
 // See docs for options (host, vhost, credentials, etc.)
 const bus = new Bus();
 
-// start the bus.  The creates the connection, among other things.
+// start the bus.  This creates the connection, among other things.
 bus.start();
 
-// When bus is started you can use it.
+// When bus is started, you can use it.
 bus.on('started', ()=> {
 
   // Depending on the role of the application, you can do various things with the bus.
@@ -34,8 +34,8 @@ bus.on('started', ()=> {
   });
   
   /****************************************
-     As a message type publisher:
-     Fanout a message to any/all subscribers.
+    As a message type publisher:
+    Broadcast a message to any/all subscribers.
   */
   const userCreatedEvent = {
     id: 42
@@ -50,10 +50,10 @@ bus.on('started', ()=> {
   
   
   /****************************************
-     As a topic publisher:
-     Publish using a known exchange and routing key,
-     to route message to specific consumer(s).
-     (Note: exchange creation/deletion is handled automatically.)
+    As a topic publisher:
+    Publish using a known exchange and routing key,
+    to route message to specific consumer(s).
+    (Note: exchange creation/deletion is handled automatically.)
   */
   const publishOptions = {
     exchangeName: 'user.notifications',
@@ -67,10 +67,10 @@ bus.on('started', ()=> {
   
   
   /****************************************
-     As a topic subscriber:
-     Subscribe to messages from a known exchange 
-     with a specific routing key.
-     (Note: exchange creation/deletion is handled automatically.)
+    As a topic subscriber:
+    Subscribe to messages from a known exchange 
+    with a specific routing key, or key pattern.
+    (Note: exchange creation/deletion is handled automatically.)
   */
   const subscriptionOptions = {
     exchangeName: 'user.notifications',
@@ -94,8 +94,8 @@ bus.on('started', ()=> {
   
   
   /****************************************
-     As an RPC callee:
-     Bind a handler function to a message type.
+    As an RPC callee:
+    Bind a handler function to a message type.
   */
   const handleRequest = (message) => {
     return {
@@ -109,8 +109,8 @@ bus.on('started', ()=> {
   
   
   /****************************************
-     As an RPC caller:
-     Call with a message type and receive the reply in a promise
+    As an RPC caller:
+    Call with a message type and receive the reply in a promise
   */
   const message = {
     id: 42
