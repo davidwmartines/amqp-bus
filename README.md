@@ -1,5 +1,17 @@
 # amqp-bus
-Bus-like facade over AMQP for simple messaging patterns.
+A bus-like facade over AMQP for simple messaging patterns.  Makes using RabbitMQ for idomatic messaging dead simple.
+
+### Description
+The library provides a Bus class, which as has seven functions:
+* start
+* stop
+* publish
+* subscribe
+* unsubscribe
+* call
+* bind
+
+Bus is also an EventEmitter, and raises 'started' and 'stopped' events, as well as log info events: 'debug', 'info', and 'error'.
 
 ### Basic Usage
 
@@ -27,14 +39,6 @@ bus.on('started', ()=> {
 
 ```
 
-Bus has seven functions:
-* start
-* stop
-* publish
-* subscribe
-* unsubscribe
-* call
-* bind
 
 ### Depending on the role of the application, you can do various things with the bus.
   
@@ -157,4 +161,6 @@ bus.stop();
 ```
 
 ### API docs
+
+
 coming soon
