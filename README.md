@@ -1,7 +1,9 @@
 # amqp-bus
 A bus-like facade over AMQP for simple messaging patterns.  Makes using RabbitMQ for idomatic messaging dead simple.
 
-### Description
+The interface and routing topology are **opinionated**, and based loosely on ideas from the [MassTransit](http://masstransit-project.com/) project and various best-practice articles.
+
+### Introduction
 The library provides a Bus class, which as has seven functions:
 * start
 * stop
