@@ -96,13 +96,14 @@ bus.on('started', ()=> {
   /****************************************
     As an RPC callee:
     Bind a handler function to a message type.
+    The return value of the handler will be sent back to caller as the reply.
   */
   const handleRequest = (message) => {
     return {
       id: 42,
       name: 'john'
     };
-    //or return a promise...
+    // You may also return a promise, and the resolved value will be sent as the reply.
   };
   
   bus.bind('user.query.by-id', handler);
@@ -110,14 +111,14 @@ bus.on('started', ()=> {
   
   /****************************************
     As an RPC caller:
-    Call with a message type and receive the reply in a promise
+    Call with a message type and receive the reply in a promise.
   */
   const message = {
     id: 42
   };
   bus.call('user.query.by-id', message)
-    .then((response) => {
-       // do something with the response
+    .then((reply) => {
+       // do something with the reply...
     });
     
 });
