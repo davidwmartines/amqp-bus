@@ -52,7 +52,7 @@ Subscribe to a named message type that could be published, such as 'user.created
 const subscriptionOptions = {
   messageType: 'user.created'
 };
-bus.subscribe(subscribeOptions, (message) => {
+bus.subscribe(subscriptionOptions, (message) => {
   // message is the JSON object that was published.
   // do something with message...
 });
@@ -91,7 +91,7 @@ const message = {
   notification : 'something cool happend'
 };
 
-  bus.publish(publishOptions, message);
+bus.publish(publishOptions, message);
 ```
 
 
