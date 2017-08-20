@@ -1,6 +1,6 @@
 {
   "name": "amqp-bus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bus-like facade over AMQP for simple messaging patterns.",
   "main": "index.js",
   "scripts": {
