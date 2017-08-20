@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/d5172/amqp-bus#readme",
   "dependencies": {
-    "amqp": "^0.2.6",
     "amqplib": "^0.5.1",
     "bluebird": "^3.5.0",
     "shortid": "^2.2.8",
