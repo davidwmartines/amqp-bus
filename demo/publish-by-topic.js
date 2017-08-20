@@ -8,7 +8,7 @@ const messageCount = 5;
 const bus = new Bus(busConfig);
 
 const publishOptions = {
-  exchangeName: 'bus-demo-notifications',
+  exchangeName: 'notifications',
   routingKey: 'notifications.user.1234'
 };
 

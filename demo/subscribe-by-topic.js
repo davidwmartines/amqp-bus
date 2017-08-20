@@ -5,8 +5,8 @@ const busConfig = require('./bus-config');
 const bus = new Bus(busConfig);
 
 const subscribeOptions = {
-  exchangeName: 'user-messages',
-  routingKey: 'messages.user.1234'
+  exchangeName: 'notifications',
+  routingKey: 'notifications.user.1234'
 };
 
 bus.on('started', function () {
