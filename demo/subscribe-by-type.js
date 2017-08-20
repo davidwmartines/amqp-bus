@@ -1,12 +1,8 @@
 'use strict';
 const Bus = require('../lib/bus');
+const busConfig = require('./bus-config');
 
-const bus = new Bus({
-  host: '192.168.56.1',
-  vhost: 'bus-demo',
-  username: 'david',
-  password: 'david'
-});
+const bus = new Bus(busConfig);
 
 const subscribeOptions = {
   messageType: 'something.happened',

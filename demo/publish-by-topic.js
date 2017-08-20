@@ -1,15 +1,11 @@
 'use strict';
 const Bus = require('../lib/bus');
 const Promise = require('bluebird');
+const busConfig = require('./bus-config');
 
 const messageCount = 5;
 
-const bus = new Bus({
-  host: '192.168.56.1',
-  vhost: 'bus-demo',
-  username: 'david',
-  password: 'david'
-});
+const bus = new Bus(busConfig);
 
 const publishOptions = {
   exchangeName: 'bus-demo-notifications',
